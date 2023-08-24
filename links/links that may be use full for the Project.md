@@ -1,0 +1,3 @@
+1. https://www.studocu.com/row/document/university-of-gondar/strategiec-management/cafteria-management-cafteria-management-system/21428777 -- a cafeteria system for welkite university
+2. https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwi8s6iViO-AAxUVRvEDHWqdDJoQFnoECA8QAQ&url=http%3A%2F%2Fwww.aau.edu.et%2Fstudent-life%2Fhousing-and-dining%2F&usg=AOvVaw0ASBH3Ibxlu_KYvkm4LORw&opi=89978449  -- Addis Abeba University
+3.  https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwibvu2Xlu-AAxXcSvEDHft8C2UQFnoECBMQAQ&url=https%3A%2F%2Fwww.studocu.com%2Frow%2Fdocument%2Fwollo-university%2Fproject-management%2Fcafe-system-gfdhg%2F13938784&usg=AOvVaw1XyY5OX19k39YFg16d5Y4C&opi=89978449  -- wollo University
