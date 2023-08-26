@@ -1,9 +1,8 @@
 import static javax.swing.JOptionPane.*;
 import com.cage.zxing4p3.*;
 ZXING4P zxing;
-PImage QRCODE;
+PImage QRCode;
 
-String path = "";
 Table table;
 String used = "1";
 int row;
@@ -15,24 +14,38 @@ String Dinnertime = getDateStamp()+"-"+"DN";
 boolean isbreakfasttime;
 boolean islunchtime;
 boolean isdinnertime;
-String code = showInputDialog("Enter Your code please");
 
-void mousePressed (){
-  selectInput ("Insert a QR Code Image", "file");
-  
- 
+String code;
+String path;
+
+void setup () {
+  zxing = new ZXING4P();
 }
 
 void draw () {
-  selectInput ("Insert a QR Code Image", "file");
-  everything (code);
-  food (used);
+  if (path != null && !path.isEmpty()) {
+    decodeQR (path);
+    everything (code);
+    food (used);
+    
+    path = "";
+    code = "";
+  }
 }
+void mouseReleased () {
+  selectInput ("Insert a QR Code Image", "file");
+}
+
 void file (File f) {
   path = f.getAbsolutePath();
   println (f.getAbsolutePath());
 }
 
+void decodeQR (String path) {
+  QRCode = loadImage (path);
+  String decoded = zxing.decodeImage (true, QRCode);
+  code = decoded;
+}
 
 void everything (String code) {  
   isbreakfasttime = hour() >= 6 && hour() <= 8;
