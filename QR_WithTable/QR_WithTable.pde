@@ -2,7 +2,7 @@ Table table;
 String used = "1";
 String intern = "2";
 int row;
-String tablePath = "C:/Users/Dell/Desktop/desktop/project/project/DATA_1.csv";
+String tablePath = "C:/Users/user/Desktop/DATA_1.csv";
 String breakfastTime;
 String lunchTime;
 String dinnerTime;
@@ -11,25 +11,31 @@ boolean isbreakfasttime;
 boolean islunchtime;
 boolean isdinnertime;
 
-String code;
-String path;
-
 void setup () {
-  zxing = new ZXING4P();
+  size (144, 176);
+
+  image = new ZXING4P ();
+
+  movie = new Movie(this, ip);
+  movie.loop ();
+
+  //zxing = new ZXING4P();
 }
 
 void draw () {
-  if (path != null && !path.isEmpty()) {
-    decodeQR (path);
-    everything (code);
-
-    path = "";
-    code = "";
+  if ( movie!= null && movie.height != 0 && movie.width != 0) {
+    image (movie, 0, 0);
+    
+    try {
+      decodeQR (movie);
+    } catch (Exception e) {
+      println (e);
+    }
   }
 }
 
 boolean isValidCode (String code) {
-  boolean foundCode = false; 
+  boolean foundCode = false;
   for (int c = 0; c < table.getRowCount(); c++) {
     if (code.equals(table.getString(c, "CODE"))) {
       foundCode = true; 

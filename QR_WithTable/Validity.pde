@@ -1,4 +1,5 @@
-void everything (String code) {  
+void everything (String code) {
+  println ("Checking for code: " + code);
   updateTime ();
   updateDateStamp ();
 

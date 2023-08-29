@@ -14,5 +14,5 @@ void mouseReleased () {
 
 void file (File f) {
   path = f.getAbsolutePath();
-  println (f.getAbsolutePath());
+  //println (f.getAbsolutePath());
 }
