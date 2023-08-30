@@ -23,7 +23,7 @@ ZXING4P image;
 import processing.video.*;
 Movie movie;
 String prevCode = "";
-String ip = "http://192.168.8.117:8080/video";
+String ip = "http://192.168.8.107:8080/video";
 int lastTime ;
 
 void decodeQR (Movie movie) {
