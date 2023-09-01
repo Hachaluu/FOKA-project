@@ -12,10 +12,19 @@ boolean islunchtime;
 boolean isdinnertime;
 
 void setup () {
-  size (144, 176);
+  size (300, 176);
 
+  println (1, millis ());
   image = new ZXING4P ();
+  println (2, millis ());
   movie = new Movie(this, ip);
+  println (3, millis ());
+  movie.loop ();
+  println (4, millis ());
+  movie_two = new Movie(this, ip_two);
+  println (5, millis ());
+  movie_two.loop ();
+  println (6, millis ());
 
   //zxing = new ZXING4P();
 }
@@ -26,6 +35,17 @@ void draw () {
 
     try {
       decodeQR (movie);
+      
+    } 
+    catch (Exception e) {
+      println (e);
+    }
+  }
+  if ( movie_two!= null && movie_two.height != 0 && movie_two.width != 0) {
+    image (movie_two, 144 + 6, 0);
+
+    try {
+      decodeQR_two (movie_two);
     } 
     catch (Exception e) {
       println (e);
