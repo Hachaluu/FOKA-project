@@ -20,6 +20,7 @@ void setup () {
   movie = new Movie(this, ip);
   println (3, millis ());
   movie.loop ();
+  image_two = new ZXING4P ();
   println (4, millis ());
   movie_two = new Movie(this, ip_two);
   println (5, millis ());
@@ -35,7 +36,6 @@ void draw () {
 
     try {
       decodeQR (movie);
-      
     } 
     catch (Exception e) {
       println (e);
