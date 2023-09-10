@@ -31,7 +31,7 @@ void setup () {
 }
 
 void draw () {
-  if ( movie!= null && movie.height != 0 && movie.width != 0) {
+  if ( movie != null && movie.height != 0 && movie.width != 0) {
     image (movie, 0, 0);
 
     try {
@@ -41,7 +41,7 @@ void draw () {
       println (e);
     }
   }
-  if ( movie_two!= null && movie_two.height != 0 && movie_two.width != 0) {
+  if ( movie_two != null && movie_two.height != 0 && movie_two.width != 0) {
     image (movie_two, 144 + 6, 0);
 
     try {

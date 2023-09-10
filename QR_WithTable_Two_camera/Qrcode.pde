@@ -27,8 +27,8 @@ Movie movie_two;
 String prevCode = "";
 
   String prevCode_two = "";
-String ip_two = "http://192.168.43.181:8080/video";
-String ip = "http://192.168.43.78:8080/video";
+String ip_two = "http://192.168.43.42:8080/video";
+String ip = "http://192.168.43.214:8080/video";
 
 int lastTime ;
 int lastTime_two ;

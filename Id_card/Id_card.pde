@@ -14,9 +14,13 @@ String tablePath = "C:/Users/Dell/Desktop/desktop/project/project/DATA_2.csv";
 ;
 Table table ;
 table = loadTable (tablePath, "header");
+
+boolean found =  false;
+
 for (int i = 0; i < table.getRowCount (); i++) {
   if (code.equals(table.getString (i, "CODE") )) {
-    Name = table.getString (i, "NAME");
+    //if (Name.equals( table.getString (i, "NAME"))) {
+    Name = table.getString(i, "NAME");
     DOB =  table.getString (i, "DOB");
     CafeUsage = table.getString (i, "CAFEE");
     Status = table.getString (i, "INTERNSHIP");
@@ -34,11 +38,20 @@ for (int i = 0; i < table.getRowCount (); i++) {
     }
     SchoolYear =  table.getString (i, "SCHOOL YEAR");
     Departement =  table.getString (i, "DEPARTMENT");
+
+    println ("CODE: " + code );
+    println ("NAME: " + Name);
+    println ("Cafe Status: " + CafeStatus);
+    println ("Internship: " + Internship );
+    println ("DOB:" + DOB);
+    println ("School Year: " + SchoolYear);
+    println ("Departemernt: " + Departement);
+    showMessageDialog (frame, "Code: " + code +"\n"+ "Name: " + Name + "\n" + "Status: " + CafeStatus + "\n"  + "Internship: "+Internship + "\n" + "DOB:  " + DOB +  "\n"  + "School Year: " + SchoolYear+   "\n"  + "Departement: " + Departement );
+    found = true;
   }
 }
-println ("CODE: " +code );
-println ("NAME: " +Name);
-println ("DOB:" + DOB);
-println ("Status: " + Status);
-println ("Departemernt: " + Departement);
-showMessageDialog (frame, "Code: " + code +"\n"+ "Name: " + Name + "\n" + "Status: " + CafeStatus + "\n"  + "Internship: "+Internship + "\n" + "DOB:  " + DOB +  "\n"  + "School Year: " + SchoolYear+   "\n"  + "Departement: " + Departement );
+
+if (!found) {
+  println ("Invalid Input");
+}
+//}
