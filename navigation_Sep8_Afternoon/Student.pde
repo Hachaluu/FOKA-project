@@ -4,16 +4,19 @@ class Student {
   int rIndex;
 
   TableRow row;
+  PImage photo;
 
   boolean exists;
 
   Student (String code) {
     this.code = code;
-    
+
     rIndex = table.findRowIndex (code, 0);
     exists = rIndex != -1;
 
     row = table.getRow (rIndex);
+
+    photo = loadImage("C:/Users/Dell/Desktop/desktop/project/project/Photos/"+code+".jpeg");
   }
 
   boolean exists () {
@@ -39,5 +42,12 @@ class Student {
   }
   String getcafestatus () {
     return row.getString ("CAFEE");
+  }
+  PImage getPhoto () {
+    return photo;
+  }
+
+  String getgender() {
+    return row.getString ("GENDER");
   }
 }

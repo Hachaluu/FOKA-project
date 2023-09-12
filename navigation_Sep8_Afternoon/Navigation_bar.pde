@@ -77,12 +77,7 @@ class Navigationbar {
     image(ucheck, 68, 45, 35, 38);
 
     //Header bars 
-    fill (white);
-    textAlign(LEFT, TOP); 
-    text ("HOME", 710, 54);
-    text ("PROFILE", 955, 54);
-    text ("Report", 1065, 54);
-    text( "SING OUT", 1117, 54);
+  
     textSize (29);
     textFont (MontserratSemiBold);
     text ("U-Check", 119, 54);

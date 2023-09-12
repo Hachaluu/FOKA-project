@@ -40,4 +40,7 @@ class Student {
   String getcafestatus () {
     return row.getString ("CAFEE");
   }
+  String getgender(){
+   return row.getString ("GENDER"); 
+  }
 }

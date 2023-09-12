@@ -10,13 +10,14 @@ Table table;
 
 String cafee;
 String cafeUsage;
+String gender;
 
 Student student;
 
 String tablePath = "C:/Users/Dell/Desktop/desktop/project/project/DATA_2.csv";
 
 void setup () {
-  image = loadImage("C:/Users/Dell/Desktop/image/person.png");
+  image = loadImage("C:/Users/Dell/Desktop/desktop/project/project/Photos/"+code+".jpeg");
   fullScreen();
   table = loadTable (tablePath, "header");
   student = new Student (code);
@@ -44,22 +45,8 @@ void draw() {
   rect (x + 30, y + 69, 121, 162, 4);
   fill(#282843);  
   rect (x, y, 440, 49);
-  image(image, x + 30, y + 69);
-  fill (255);
-  textAlign(LEFT, TOP);
-
-  text (student.getName(), x + 171, y + 99);
-  text ("Female", x + 171, y + 126);
-  text (student.getDepartment(), x + 171, y +153);
-  text (cafeUsage, x + 171, y + 180);
-  fill (#1D1F32);
-  rect (x + 50, y + 202, 80, 24, 4);
-  fill(255);
-  
-  textAlign(LEFT, TOP);
-  textSize(14);
-  
-  text("UC-" + code, x + 54, y + 206);
+  studentid();
+ 
 }
 
 void intern() {
@@ -70,4 +57,25 @@ void intern() {
   } else if (student.getInternship() .equals("0")) {
     cafeUsage = "Non cafe ";
   }
+  if (student.getgender().equals("F")){
+    gender = "Female";
+  }else gender = "Male";
+}
+void studentid (){
+   image(image, x + 30, y + 69, 121, 162);
+  fill (255);
+  textAlign(LEFT, TOP);
+
+  text (student.getName(), x + 171, y + 99);
+  text (gender, x + 171, y + 126);
+  text (student.getDepartment(), x + 171, y +153);
+  text (cafeUsage, x + 171, y + 180);
+  fill (#1D1F32);
+  rect (x + 50, y + 202, 80, 24, 4);
+  fill(255);
+  
+  textAlign(LEFT, TOP);
+  textSize(14);
+  
+  text("UC-" + code, x + 54, y + 206);
 }

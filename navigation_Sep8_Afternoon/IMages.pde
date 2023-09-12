@@ -1,4 +1,4 @@
-PImage botton, symbolx, symbolT, background, search, symbolN, one, two, three, four,qr,ucheck;
+PImage botton, symbolx, symbolT, background, search, symbolN, one, two, three, four,qr,ucheck,photo;
 
 void IMAGE(){
    ucheck =loadImage("C:/Users/Dell/Desktop/image/ucheck.png");
@@ -12,4 +12,5 @@ void IMAGE(){
   //three = loadImage("C:/Users/Dell/Desktop/image/3.png");
   four = loadImage("C:/Users/Dell/Desktop/image/4.png");
   background = loadImage("C:/Users/Dell/Desktop/image/background.png");  
+ // photo = loadImage("C:/Users/Dell/Desktop/desktop/project/project/Photos" + code + ".jpeg");
 }

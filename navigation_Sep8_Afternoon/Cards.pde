@@ -1,5 +1,8 @@
 import com.cage.zxing4p3.*;
 
+String cafee = "";
+String cafeUsage = "";
+String gender = "";
 class Cards {
   Movie movie;
   ZXING4P zxing;
@@ -54,12 +57,11 @@ class Cards {
       //copy (x, y, w, h, x + 401, y + 171, w, h);
       if (millis() - lastTime >= 5000) {
         state = 0;
-      } else if (millis() - lastTime <= 5000) {
-        state = 1 ;
       }
       try { 
         //decodeQR (movie);
         String code = zxing.decodeImage (false, movie);
+
         if (!code.equals(prevCode)) {
           println ("Source 1: Code Read: ", code);
           prevCode = code;
@@ -67,7 +69,9 @@ class Cards {
           student = new Student (code);
 
           if (student.exists()) {
-
+            state=1;
+            // intern();
+            studentid(student, x, y);
             println ("valid code: " + student.getcode());
             println ("Name: ", student.getName ());
             println ("Department: ", student.getDepartment());
@@ -97,8 +101,14 @@ class Cards {
       }
     } else if (state == 3) {
     } else if (state == 1) {
-      fill (255);
-      text("Student detail appears here [" + student.code + "]", x + w/2, y + h/2 - headerH);
+      //fill (255);
+      //intern();
+      if (student.exists()){
+      studentid(student, x, y);
+      }else if (!student.exists()){
+      fill(255);
+      text("Invalid code", x + 172, y + 125);
+      } //text("Student detail appears here [" + student.code + "]", x + w/2, y + h/2 - headerH);
     }
     // Header
     fill (purpleMid, 255 * 0.80);
@@ -126,7 +136,57 @@ class Cards {
     text (label3, x + w - 15.5, y + headerH/2);
     fill (0);
     line (0, 12, 1366, 0);
+    if (hovered1()) {
+      stroke(0, 0, 255, 255*0.50);
+      noFill();
+      rect (x, y, w, h, radius);
+    }
+    if (hovered2()) {
+      stroke(accentColor, 255 * 0.50);
+      noFill();
+      rect (x, y, w, headerH, radius, radius, 0, 0);
 
-    //Search area
+      //Search area
+    }
+  }
+  void studentidcard() {
+    if (student.getInternship().equals("1") ) {
+      cafeUsage = "Cafe User (N)";
+    } else if (student.getInternship() .equals("2")) {
+      cafeUsage = "Cafe User (S)";
+    } else {
+      cafeUsage = "Non cafe ";
+    }
+    if (student.getgender().equals("F")) {
+      gender = "Female";
+    } else if (student.getgender().equals ("M")) {
+      gender = "Male";
+      
+    }
+    
+  }
+  void studentid (Student student, float x, float y) {
+    studentidcard  ();
+    image(student.getPhoto (), x + 30, y + 69, 121, 162);
+    fill (255);
+    textAlign(LEFT, TOP);
+    text (student.getName(), x + 171, y + 99);
+    text (gender, x + 172, y + 125);
+    text (student.getDepartment(), x + 171, y +153);
+    text (cafeUsage, x + 171, y + 180);
+    fill (#1D1F32);
+    rect (x + 50, y + 202, 80, 24, 4);
+    fill(255);
+
+    textAlign(LEFT, TOP);
+    textSize(14);
+
+    text("UC-" + code, x + 54, y + 206);
+  }
+  boolean hovered1() {
+    return mouseX >= x && mouseX <= x + w && mouseY >= y && mouseY <= y + h && mouseY >= y + headerH;
+  }
+  boolean hovered2() {
+    return  mouseX >= x && mouseX <= x + w && mouseY >= y && mouseY <= y + headerH;
   }
 }
