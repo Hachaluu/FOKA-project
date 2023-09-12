@@ -13,29 +13,33 @@ class Pages {
   boolean isVerification () {
     return page.equals (VERIFICATION);
   }
-  boolean isProfile (){
-   return page.equals (PROFILE); 
+  boolean isProfile () {
+    return page.equals (PROFILE);
   }
-  boolean isReport(){
-   return page.equals (REPORT); 
+  boolean isReport() {
+    return page.equals (REPORT);
   }
-  boolean isSignOut(){
-   return page.equals(SIGNOUT); 
+  boolean isSignOut() {
+    return page.equals(SIGNOUT);
   }
   void setHome () {
     page = HOME;
+    homepageDraw();
   }
   void setVerification () {
     page = VERIFICATION;
     pageVerificationDraw();
   }
-  void setProfile (){
-  page = PROFILE;
+  void setProfile () {
+    page = PROFILE;
+    profilepageDraw();
   }
-  void setReport (){
-  page = REPORT;
+  void setReport () {
+    page = REPORT;
+    reportpageDraw();
   }
-  void setSignout (){
-  page = SIGNOUT;
+  void setSignout () {
+    page = SIGNOUT;
+    signoutpageDraw();
   }
 }

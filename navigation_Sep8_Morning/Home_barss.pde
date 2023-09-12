@@ -33,7 +33,6 @@ class Bar {
     for (int b = 0; b < barButtons.length; b ++) {
       barButtons [b].draw ();
     }
-    
   }
 
   void mouseReleased () {
@@ -66,7 +65,14 @@ class BarButton {
   }
   void draw() {
     noStroke();
+    textAlign (LEFT, TOP);
+    fill (white);
+    image(ucheck, 68, 45, 35, 38);
 
+    textFont (MontserratSemiBold);
+    textSize (29);
+    text ("U-Check", 119, 45);
+    image(user, 1283, 45);
     if (hovered()) {
       fill(#544E7F);
       rect(x, y, w, h, 4);
@@ -98,5 +104,4 @@ class BarButton {
   boolean hovered() {
     return mouseX >= x && mouseX <= x + w && mouseY >= y && mouseY <= y + h;
   }
-
 }

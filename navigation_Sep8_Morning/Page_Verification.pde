@@ -16,5 +16,16 @@ void pageVerificationDraw () {
 }
 
 void homepageDraw(){
+  No1.draw();
+  No2.draw();
+}
+
+void profilepageDraw(){
+  
+}
+void reportpageDraw(){
+  r.draw();
+}
+void signoutpageDraw(){
   
 }

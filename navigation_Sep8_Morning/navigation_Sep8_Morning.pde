@@ -18,7 +18,8 @@ Cards gate1, gate2, gate3, gate4;
 Bar bar;
 Pages page;
 Gates G1, G2, G3, G4;
-
+Home No1, No2;
+Reports r;
 void setup() {
 
   table = loadTable(tablePath, "header");
@@ -51,11 +52,15 @@ void setup() {
   gate3 = new Cards (402, 448, "Gate 3", "", "Last Entry: 5sec ago", null, lightblue);
   gate4 = new Cards (858, 448, "Gate 4", "", "Last Entry: 2sec ago", null, yellow);
 
-
+  // Home page viwe
+  No1 = new Home (697, 480, "2972");
+  No2 = new Home (871, 480, 2897);
   //Creating the bar of the top of the page
   bar = new Bar ();
   bar.activate (1);
+  r = new Reports();
   page.setVerification ();
+  page.setHome();
   page.setProfile ();
   page.setReport ();
   page.setSignout ();
@@ -76,10 +81,17 @@ void draw() {
   bar.draw ();
 
   if (page.isHome ()) {
-    //pageHomeDraw ();
+    homepageDraw ();
   } else if (page.isVerification ()) {
     pageVerificationDraw ();
+  } else if (page.isProfile()){
+  profilepageDraw();
+  }else if (page.isReport()){
+    reportpageDraw();
+  }else if (page.isSignOut()){
+   signoutpageDraw(); 
   }
+  
 }
 
 void mouseReleased () {
@@ -92,6 +104,7 @@ void mouseReleased () {
     //pageVerificationDraw.draw();
   } else if (bar.getActive () == 2) {
     page.setProfile ();
+    
   } else if (bar.getActive () == 3) {
     page.setReport();
   } else if (bar.getActive () == 4) {

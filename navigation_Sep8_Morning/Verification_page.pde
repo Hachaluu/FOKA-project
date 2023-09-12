@@ -26,42 +26,19 @@ class Navigationbar {
 
     fill (purpleMid);
     rect (68, 387, 301, 321, 4);
-
-    //fill (#282843);
-    //rect (x, y, 301, 39, 4);
+    
     stroke(255, 255 * 0.20);
     line (0, 127, 1366, 127);
     // Container
 
     noStroke ();
 
-    //fill (purpleMid);
-   // rect(x, y, 301, 39, 4);
-    //rect (68, 387, 301, 39, 4);
-
-    //bars
-
-    //fill(#4A4A6C);
-    //rect(68, 387, 301, 39, 4);
-
-
     fill(white, 255 * 0.30);
     textAlign (LEFT, TOP);
     textSize(15);
     text(header, x + 36, y + 9);
-    //fill(white);
-    //image(image, x + 271, y + 10, 20, 20);
-
-    //fill(#FDFDFD);
-
-    //fill (accentColor);
-    //rect (x, y + 7, 5, 25);
-    fill (white);
-    image(ucheck, 68, 45, 35, 38);
-
-    textFont (MontserratSemiBold);
-    textSize (29);
-    text ("U-Check", 119, 45);
+    
+ 
 
     textFont (helveticaReg);
     fill(white);
@@ -100,7 +77,7 @@ class Navigationbar {
     text ("Wolde Getachew Abera", 104, 609);
     text ("Tekletsadik Abera Aseffa", 104, 638);
     text ("Dessalegn Tekle Bonsa", 104, 667);
-    image(user, 1283, 45);
+    
   }
 }
 
