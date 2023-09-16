@@ -1,6 +1,7 @@
+Student student;
 class Home { 
   String cafeuser = "";
-  int monthlyactive;
+  int monthlyactive[] = {};
   PImage  ID = loadImage("C:/Users/Dell/Desktop/image/ID.png");
   float x, y, X, Y;
   int w = 85, h = 48;
@@ -8,11 +9,7 @@ class Home {
     this.cafeuser = cafeuser;
     this.x = x;
     this.y = y;
-  }
-  Home (float X, float Y, int monthlyactive) {
-    this.monthlyactive = monthlyactive;
-    this.X = X;
-    this.Y = Y;
+   // this.monthlyactive = monthlyactive;
   }
   void draw() {
     noFill();
@@ -34,10 +31,21 @@ class Home {
     text ("Next Meal: ", 1061, 441);
     textSize (36);
     text(cafeuser, x, y );
-    text (str(monthlyactive), X, Y );
+    if (student.getInternship().equals("1") ){
+      monthlyactive = append (monthlyactive, 1);
+    }
+    text (monthlyactive, 870, y );
     text (str(hour()), 1069, 480);
+    
     text (str(minute()), 1122, 480);
+    
     text (str(second()), 1188, 480);
+    
+    textSize(14);   
+    text("Hrs", 1069, 519);
+    text("Min", 1122, 519);
+    text ("Sec", 1188, 519);
+    
     fill (#633AD9);
     circle (871, 526, 10);
     circle (696, 526, 10);
@@ -77,10 +85,10 @@ class Home {
     }
   }
   boolean hovered1() {
-    return mouseX >= 696 && mouseX <= 696 + 219  && mouseY >= 583 && mouseY >= 583 - 69;
+    return mouseX >= 696 && mouseX <= 696 + 219  && mouseY >= 583 && mouseY <= 583 + 35*2;
   }
 
   boolean hovered2() {
-    return mouseX >= 947 && mouseX <= 947 + 219  && mouseY >= 583 && mouseY >= 583 - 69;
+    return mouseX >= 947 && mouseX <= 947 + 219  && mouseY >= 583 && mouseY <= 583 + 35*2;
   }
 }
