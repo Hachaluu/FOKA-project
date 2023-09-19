@@ -8,7 +8,7 @@ String one = "1";
 int BF = 0;
 int LN = 0;
 int DN = 0;
-Table table = loadTable("C:/Users/Dell/Desktop/desktop/project/project/DATA_2 .csv", "header");
+Table table = loadTable("C:/Users/Dell/Desktop/desktop/project/project/DATA_2.csv", "header");
 
 
 int cafe_users = 0;

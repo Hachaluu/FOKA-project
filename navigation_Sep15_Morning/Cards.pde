@@ -12,7 +12,7 @@ class Cards {
   String label1, label2, label3 = "";
   int state = 0; // 0: Feed | 1: Student Details | 2: Text (Disconnected/Fetching Feed ...)
   long lastTime, patience = 7000;
-
+  long lastMin;
   float x, y;
   float w = 440, h = 260;
   float headerH = 39;
@@ -50,7 +50,7 @@ class Cards {
         isEligible = true;
 
         lastTime = millis();
-        label3 = "Last Entry: " + lastTime;
+        lastMin = minute();
         println (student.getcafestatus());
         everything (student);
       } else {
@@ -138,14 +138,21 @@ class Cards {
         text ("Disconnected ", x + w/2, y + h/2);
       }
     } else if (state == 3) {
+      if (isEligible==false){
       fill (255);
       textAlign(CENTER, CENTER);
       textSize (24);
       text ("Error", x + w/2, y + headerH/2);
-      // Does not exist
+      stroke(255, 0, 0);
+      strokeWeight (1);
+      noFill();
+      rect (x, y, w, h, radius);
+      }// Does not exist
       // Show ELIGIBILITY or IN_ELIGIBILITY
     } else if (state == 1) {
       if (student.exists()) {
+        label3 = "Last Entry: " + (lastTime-second()) + "Sec ago";
+        
         fill(255);
         textAlign(CENTER, CENTER);
         // text("Scanning...",x + 40, y);
@@ -256,14 +263,25 @@ class Cards {
 }
 
 boolean isBreakFastTime () {
-  println ("BF:", hour (), minute (), hour() >= 6 && hour() <= 8 && minute () <= 60);
+  //println ("BF:", hour (), minute (), hour() >= 6 && hour() <= 8 && minute () <= 60);
   return hour() >= 6 && hour() <= 8 && minute () <= 60;
 }
 boolean isLunchTime() {
-  println ("LN:", hour (), minute (), hour() >= 6 && hour() <= 8 && minute () <= 60);
+  //println ("LN:", hour (), minute (), hour() >= 6 && hour() <= 8 && minute () <= 60);
   return hour() >= 12 && hour() <= 14  && minute () <= 60;
 }
 boolean isDinnerTime () {
-  println ("DN:", hour () , hour() >= 6 && hour() <= 8 && minute () <= 60);
+  //println ("DN:", hour (), hour() >= 6 && hour() <= 8 && minute () <= 60);
   return hour () >= 18 && hour() <= 20  && minute () <= 60;
+}
+String Nextmeal(){
+  String nextmeal = "";
+ if (hour() > 14 && hour () < 6){
+   nextmeal = "Breakfast";
+ }else if (hour () > 8 && hour() < 12){
+   nextmeal = "Lunch";
+ }else if (hour () > 12 && hour () < 18){
+   nextmeal = "Dinner";
+ }
+ return nextmeal;
 }

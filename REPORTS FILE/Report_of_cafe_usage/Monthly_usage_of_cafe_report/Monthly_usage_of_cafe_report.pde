@@ -1,22 +1,25 @@
 import java.time.LocalDate;
 
-LocalDate thisMonth = LocalDate.parse ("2023-09-15");
-LocalDate prevMonth = thisMonth.minusMonths(1);
 
 int avg = month();
 String one = "1";
 int BF = 0;
 int LN = 0;
 int DN = 0;
-Table table = loadTable("C:/Users/Dell/Desktop/desktop/project/project/DATA_2.csv", "header");
+Table table ;
 
 String monthsOfTheYear [] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
 String  days[] = new String [0];
 void setup() {
-}
+  table = loadTable("C:/Users/Dell/Desktop/desktop/project/project/DATA_2.csv", "header");
+  
+
 int cIndex ;
-void draw() {
+
+  LocalDate thisMonth = LocalDate.parse ("2023-09-15");
+LocalDate prevMonth = thisMonth.minusMonths(1);
+
   try {
     for (int a = 0; a < 31; a ++) {
       prevMonth = prevMonth.minusDays (1);
@@ -71,6 +74,7 @@ void draw() {
     println ("In average", BF/31, "Students have eaten Break fast in the last Month.");
     println ("In average", LN/avg, "Students have eaten Lunch in the last Month.");
     println ("In average", DN/avg, "Students have eaten Dinner in the last Month.");
+    
   } 
   catch (Exception e ) {
     println (e);
