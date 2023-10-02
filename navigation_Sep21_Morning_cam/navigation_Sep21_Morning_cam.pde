@@ -5,6 +5,8 @@ String iTablePath ="C:/Users/Dell/Desktop/desktop/project/project/internTable.cs
 
 String path1 = "http://192.168.43.78:8080/video";
 String path2 = "http://192.168.8.107:8080/video";
+String path3 = "http://192.168.8.107:8080/video";
+String path4 = "http://192.168.8.107:8080/video";
 
 Table table, internTable;
 
@@ -19,11 +21,12 @@ Navigationbar N, n1, n2, n3, n4, n5;
 Cards gate1, gate2, gate3, gate4;
 Bar bar;
 NavBars navbar;
+rNavBars rnavbar;
 
 Pages page;
 Gates G1, G2, G3, G4;
 Home Numbers;
-Reports r;
+Reports report;
 
 Profiles Headers; 
 Periodically semesterChangePeriod;
@@ -32,9 +35,11 @@ Fonts fonts;
 
 MTable selectedTable, allStudents, cafe, noncafe, intern, special, searchTable;
 
-DropDownMenu internship, batch, Cafee;
+RTable daily, monthly, annually;
 
-Search pSearch;
+DropDownMenu internship, batch, Cafee, Year, Month, Day;
+
+Search pSearch, rSearch;
 
 void setup() {
   FONTS();
@@ -52,17 +57,24 @@ void setup() {
   G2 = new Gates(68, 279, "2.   Gate2", symbolx, green, 272);
   G3 = new Gates(68, 333, "3.   Gate3", symbolx, lightblue, 272);
   G4 = new Gates(68, 387, "4.   Gate4", symbolx, yellow, 272);
-  //movie1 = new Movie(this, path1);
-  //movie1.loop();
+  
+  //Feed from camera (scanner)
+  movie1 = new Movie(this, path1);
+  movie1.loop();
   movie2 = new Movie(this, path2);
   movie2.loop();
+  movie3 = new Movie (this,path3);
+  movie3.loop();
+  movie4 = new Movie (this, path4);
+  movie4.loop();
+
 
   page = new Pages ();
 
-  gate1 = new Cards (402, 171, "Gate 1", "Scanning...", null, red);
-  gate2 = new Cards (858, 171, "Gate 2", "Scanning...", null, green);
-  gate3 = new Cards (402, 448, "Gate 3", "Scanning...", null, lightblue);
-  gate4 = new Cards (858, 448, "Gate 4", "Scanning...", null, yellow);
+  gate1 = new Cards (402, 171, "Gate 1", "Scanning...", movie1, red);
+  gate2 = new Cards (858, 171, "Gate 2", "Scanning...", movie2, green);
+  gate3 = new Cards (402, 448, "Gate 3", "Scanning...", movie3, lightblue);
+  gate4 = new Cards (858, 448, "Gate 4", "Scanning...", movie4, yellow);
 
   // Home page viwer
   Numbers = new Home (697, 480, "2897");
@@ -73,7 +85,10 @@ void setup() {
   navbar = new NavBars();
   navbar.activate(0);
 
-  r = new Reports();
+  rnavbar = new rNavBars();
+  rnavbar.activate(0);
+
+  report = new Reports();
   page.setVerification ();
 
   //Profile page
@@ -96,14 +111,39 @@ void setup() {
   String cafetypes [] = {"Cafe-User", "Non-Cafe"};
   String Batch [] = {"Regular", "Out of Batch"};
   String internTypes [] = {"Intern", "Intern (Sp.)", "Intern (OB)"};
+  String Years [] = {"2023", "2022", "2021", "2020"};
+  String Months []  = {"January", "February", "March", "April", "June", "July", "Augest", "September", "October", "November", "December"};
+  String Days [] = {"1", "2", "3", "4"};
   internship = new DropDownMenu ("Internship", internTypes, 1175, 195, 146, 56);
   batch = new DropDownMenu ("Batch", Batch, 1006, 195, 146, 56);
   Cafee = new DropDownMenu ("Cafe-Stat.", cafetypes, 832, 195, 146, 56);
 
+  Year = new DropDownMenu ("Year", Years, 814, 191, 145, 56);
+  Month = new DropDownMenu ("Month", Months, 992, 191, 145, 56);
+  Day = new DropDownMenu ("Day", Days, 1170, 191, 141, 56);
   //Search by name/ code
 
   pSearch = new Search ("Search by ID ", 259, 195, 488, 56);
   pSearch.active = true;
+  rSearch = new Search ("Search by ID", 259, 198, 488, 56);
+  rSearch.active = true;
+
+  //adding report table
+  String headers [] = {"Date", "Breakfast", "Lunch", "Dinner", "Total", "Average", "Minimum", "Maximum", "Percentage"};
+  daily = new RTable(headers, 256, 266);
+  monthly =new RTable(headers, 256, 266);
+  annually = new RTable(headers, 256, 266);
+  String Dlables [] = {"September 21, 2023", "1200", "2159", "977", "4392", "- | - | -", "Dinner", "Lunch", "23% | 17% | 60%"};
+  daily.addRow(Dlables);
+  for (int x = 1; x <= 31; x ++) {
+    String Mlables [] = {"September "+ x +","+year(), "1200", "2159", "977", "4392", "23% | 17% | 60%", "Dinner", "Lunch", "23% | 17% | 60%"};
+    monthly.addRow(Mlables);
+  }
+  String lables [] = {"January", "February", "March", "April", "June", "July", "Augest", "September", "October", "November", "December"};
+  for (int c = 0 ; c < lables.length; c ++){
+   String Mlables [] = {lables[c],"1200", "2159", "977", "4392", "23% | 17% | 60%", "Dinner", "Lunch", "23% | 17% | 60%"}; 
+   annually.addRow(Mlables);
+  }
 }
 
 
@@ -128,6 +168,20 @@ void draw() {
 
 void mousePressed (MouseEvent e) {
   bar.mousePressed ();
+  Day.mousePressed();
+  Year.mousePressed();
+  Month.mousePressed();
+  rnavbar.mousePressed();
+
+  //report navigation bar selection
+
+  if (rnavbar.getActive() == 1) {
+    daily.draw();
+  } else if (rnavbar.getActive() == 2) {
+    monthly.draw();
+  } else if (rnavbar.getActive() == 3) {
+    annually.draw();
+  }
 
   if (bar.getActive () == 0) {
     page.setHome ();
@@ -246,11 +300,11 @@ void mousePressed (MouseEvent e) {
     } else {
       selectedTable.mousePressed (e);
       searchTable.mousePressed(e);
+     
     }
 
     if (navbar.getActive () == 0) { // All students
       allStudents.setActiveIndexes (prevActiveIndexes);
-      
     }
 
     //if (navbar.getActive() == 0) { // All Students
@@ -266,12 +320,22 @@ void mousePressed (MouseEvent e) {
     //}
 
     pSearch.mousePressed ();
+
+    // Reports
+    Year .mousePressed();
+    Day.mousePressed();
+    Month.mousePressed();
+    rSearch.mousePressed();
   }
 }
 
 void mouseWheel (MouseEvent e) {
   selectedTable.mouseWheel(e);
   searchTable.mouseWheel(e);
+  
+   daily.mouseWheel(e);
+      monthly.mouseWheel(e);
+      annually.mouseWheel(e);
 }
 
 void movieEvent(Movie m) {
@@ -282,6 +346,8 @@ void keyPressed () {
   String prevS = pSearch.value;
 
   pSearch.keyPressed();
+  rSearch.keyPressed();
+
 
   if (!prevS.equals (pSearch.value)) {
     Student student = new Student (pSearch.value);

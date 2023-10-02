@@ -9,7 +9,7 @@ String colName =str (month());
 
 String YearlyReport;
 void setup () {
-  septable = loadTable ("C:/Users/Dell/Desktop/repo/data/2023/Sep.csv", "header");
+  septable = loadTable ("C:/Users/Dell/Desktop/desktop/project/project/REPORTS FILE/repo/repo/data/2023/Sep.csv", "header");
 
   table =  loadTable(dataPath, "header");
 

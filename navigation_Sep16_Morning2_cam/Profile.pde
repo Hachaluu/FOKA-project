@@ -1,4 +1,0 @@
-class Profiles {
-  void draw() {
-  }
-}
