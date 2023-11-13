@@ -1,7 +1,7 @@
 class Home { 
   Student student;
   String cafeuser = "";
-  int monthlyactive;
+  int monthlyactive = 1400;
   PImage  ID = loadImage("C:/Users/Dell/Desktop/image/ID.png");
   float x, y, X, Y;
   int w = 85, h = 48;

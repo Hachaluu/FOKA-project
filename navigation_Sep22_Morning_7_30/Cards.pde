@@ -21,7 +21,7 @@ class Cards {
   float radius = 4;
 
   boolean isEligible;
-boolean wasHere;
+  boolean wasHere;
   PImage image;
   color accentColor;
 
@@ -43,7 +43,9 @@ boolean wasHere;
   }
 
   void setStudentCode (String code) {
+    updateTable ();
     student = new Student (code);
+    
     if (student.exists()) {
       if (ismealTime()) {
         if (!student.hadMeal ()) {
@@ -54,9 +56,8 @@ boolean wasHere;
           lastTime = millis();
           lastMin = minute();
           everything (student);
-          
+
           println (student.getcafestatus());
-          
         } else {
           wasHere = true;
           state = 1;
@@ -296,7 +297,7 @@ String Nextmeal() {
     nextMealMin = 60 - minute();
   } else if (hour () > 17 && hour () < 20) {
     nextmeal = "Dinner";
-    nextMealHour = 20 - hour();
+    nextMealHour = 17 - hour();
     nextMealMin = 60 - minute();
   }
   return nextmeal;

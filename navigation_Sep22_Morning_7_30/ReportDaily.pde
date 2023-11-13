@@ -111,6 +111,8 @@ class DReport {
     if (!dir.exists ()) {
       dir.mkdirs();
     }
+    
+    println ("Daily Table Path: ", dailyTablePath);
 
     File file = new File (dailyTablePath);
     if (!file.exists ()) {
@@ -151,6 +153,7 @@ class DReport {
       TableRow newRow = data.addRow ();
       newRow.setString (0, stat[i]);
     }
+    println ("Saving Daily Table");
     saveTable (data, dailyTablePath);
   }
 
@@ -167,7 +170,7 @@ class DReport {
 
 String [] getDailyReport (String year, String month, String day) {
   String tablePath = "data/" + year + "/" +month+ "/" + day + ".csv";
-  println (tablePath);
+  println (tablePath,"here");
   Table table = loadTable (tablePath, "header");
   
   String dayR [] = table.getStringColumn (day);

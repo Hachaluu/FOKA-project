@@ -61,7 +61,7 @@ void setup() {
   G3 = new Gates(68, 333, "3.   Gate3", symbolx, lightblue, 272);
   G4 = new Gates(68, 387, "4.   Gate4", symbolx, yellow, 272);
 
- // Feed from camera (scanner)
+  // Feed from camera (scanner)
   //movie1 = new Movie(this, path1);
   //movie1.loop();
   //movie2 = new Movie(this, path2);
@@ -135,6 +135,7 @@ void setup() {
   String headers [] = {"Date", "Breakfast", "Lunch", "Dinner", "Total", "Average", "Minimum", "Maximum", "Percentage"};
   daily = new RTable(headers, 256, 266);
 
+  dReport.generate (); 
   String [] dailyReport = getDailyReport(str (year ()), monthsOfTheYear [month () - 1], str (day ()));
   daily.rows = new ArrayList <RRow> ();
   daily.addRow(dailyReport);
@@ -142,7 +143,7 @@ void setup() {
 
   monthly =new RTable(headers, 256, 266);  
   for (int x = 1; x <= 31; x ++) {
-    String Mlables [] = {"September "+ x +","+year(), "1200", "2159", "977", "4392", "23% | 17% | 60%", "Dinner", "Lunch", "23% | 17% | 60%"};
+    String Mlables [] = {"October "+ x +","+year(), "1200", "2159", "977", "4392", "23% | 17% | 60%", "Dinner", "Lunch", "23% | 17% | 60%"};
     monthly.addRow(Mlables);
   }
 
@@ -350,41 +351,44 @@ void movieEvent(Movie m) {
 }
 
 void keyPressed () {
-  println ("HERE K");
-  String prevS = pSearch.value;
+  if (page.isProfile()) {
+    println ("HERE K");
+    String prevS   = pSearch.value;
 
-  pSearch.keyPressed();
-  rSearch.keyPressed();
+    pSearch.keyPressed();
+    //rSearch.keyPressed();
 
 
-  if (!prevS.equals (pSearch.value)) {
-    Student student = new Student (pSearch.value);
-    if (student.exists()) {
-      String sLables [] = {student.getName(), "UC-"+student.getcode(), student.getAge(), student.getgender(), student.getSchoolyear(), student.getDepartment(), student.getallcafestatus()};
-      searchTable.clearRowEntries();
-      searchTable.addRow (sLables);
+    if (!prevS.equals (pSearch.value)) {
+      Student student = new Student (pSearch.value);
+      if (student.exists()) {
+        String sLables [] = {student.getName(), "UC-"+student.getcode(), student.getAge(), student.getgender(), student.getSchoolyear(), student.getDepartment(), student.getallcafestatus()};
+        searchTable.clearRowEntries();
+        searchTable.addRow (sLables);
+      }
     }
   }
-
-  if (key == '1') {
-    gate1.setStudentCode ("HOEPY");
-  } else if (key == '2') {
-    gate2.setStudentCode ("3OFFR");
-  } else if (key == '3') {
-    gate3.setStudentCode ("CUF0E");
-  } else if (key == '4') {
-    gate4.setStudentCode ("SATCI");
-  } else if (key == '5') {
-    gate1.setStudentCode("QLG0K");
-  } else if (key == '6') {
-    gate2.setStudentCode("0E47Z");
-  } else if (key == '7') {
-    gate1.setStudentCode("RFFHK");
-  } else if (key == '8') {
-    gate2.setStudentCode("CVBMC");
-  } else if (key == '9') {
-    gate1.setStudentCode("SSIZT");
-  } else if (key == '0') {
-    gate2.setStudentCode("NOPSN");
+  if (page.isVerification()) {
+    if (key == '1') {
+      gate1.setStudentCode ("HOEPY");
+    } else if (key == '2') {
+      gate2.setStudentCode ("3OFFR");
+    } else if (key == '3') {
+      gate3.setStudentCode ("CUF0E");
+    } else if (key == '4') {
+      gate4.setStudentCode ("SATCI");
+    } else if (key == '5') {
+      gate1.setStudentCode("QLG0K");
+    } else if (key == '6') {
+      gate2.setStudentCode("0E47Z");
+    } else if (key == '7') {
+      gate1.setStudentCode("RFFHK");
+    } else if (key == '8') {
+      gate2.setStudentCode("CVBMC");
+    } else if (key == '9') {
+      gate1.setStudentCode("SSIZT");
+    } else if (key == '0') {
+      gate2.setStudentCode("NOPSN");
+    }
   }
 }

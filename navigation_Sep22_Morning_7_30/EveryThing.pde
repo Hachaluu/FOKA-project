@@ -7,45 +7,8 @@ void everything (Student student) {
 
   println ("Got code: " + student.code);
   //updateTime ();
-  updateDateStamp ();
 
-  table = loadTable(tablePath, "header");
-
-  boolean foundColumn = false;
-  String whatTime = null;
-
-  if (isBreakFastTime()) whatTime = getMealStamp ();
-  else if (isLunchTime()) whatTime = getMealStamp ();
-  else if (isDinnerTime()) whatTime = getMealStamp ();
-
-
-println ("what is happening");
-  if (whatTime != null) {
-    try {
-      println (whatTime);
-      table.getColumnIndex (whatTime);
-println ("This is happening");
-      foundColumn = true;
-    } 
-    catch (Exception e) {
-      println (table.getColumnCount());
-      
-      println ("What how");
-      
-      println("bf", breakfastTime);
-      println("ln", lunchTime);
-      println("dn", dinnerTime);
-
-      table.addColumn(breakfastTime);
-
-      table.addColumn(lunchTime );
-
-      table.addColumn(dinnerTime);
-      
-      saveTable (table, tablePath);
-      println (table.getColumnCount());
-    }
-  }
+  updateTable ();
 
   if (student.isCafe()== false) {
     println ("Non cafe"); 
@@ -62,18 +25,63 @@ println ("This is happening");
     food(student);
   }
 }
+
+void updateTable () {
+  updateDateStamp ();
+  
+  table = loadTable(tablePath, "header");
+
+  boolean foundColumn = false;
+  String whatTime = null;
+
+  if (isBreakFastTime()) whatTime = getMealStamp ();
+  else if (isLunchTime()) whatTime = getMealStamp ();
+  else if (isDinnerTime()) whatTime = getMealStamp ();
+
+  println ("what is happening");
+  if (whatTime != null) {
+    try {
+      println (whatTime);
+      table.getColumnIndex (whatTime);
+      println ("This is happening");
+      foundColumn = true;
+    } 
+    catch (Exception e) {
+      println (table.getColumnCount());
+
+      println ("What how");
+
+      println("bf", breakfastTime);
+      println("ln", lunchTime);
+      println("dn", dinnerTime);
+
+      table.addColumn(breakfastTime);
+
+      table.addColumn(lunchTime );
+
+      table.addColumn(dinnerTime);
+
+      saveTable (table, tablePath);
+      table = loadTable (tablePath, "header");
+      println (table.getColumnCount());
+    }
+  }
+}
+
 void food (Student student) {
+  updateTable ();
 
   int row = table.findRowIndex(student.code, 0);
-  print("row", row);  
-  if (isBreakFastTime()) {  
-    boolean hadBREAKFAST = student.hadBreakfast(); 
+  print("row", row);
+
+  if (isBreakFastTime()) {
+    boolean hadBREAKFAST = student.hadBreakfast();
     if (hadBREAKFAST == false) {
       println ("Can eat break fast");
       table.setString (row, getMealStamp (), "1");
       saveTable (table, tablePath);
       dReport.generate ();
-      
+
       // Updating daily report
       String [] dailyReport = getDailyReport(str (year ()), monthsOfTheYear [month () - 1], str (day ()));
       daily.rows = new ArrayList <RRow> ();
